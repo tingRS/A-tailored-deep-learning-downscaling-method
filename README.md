@@ -4,7 +4,7 @@ This repository contains a deep learning model for **rainfall downscaling** from
 The corresponding paper is currently under submission.
 
 
-## Key arguments
+## Key parameters
 --upsampling_factor
 Spatial downscaling factor between input data (low-resolution) and output data (high-resolution).
 
