@@ -6,12 +6,15 @@ The corresponding paper is currently under submission.
 
 ## Key parameters
 --upsampling_factor
+
 Spatial downscaling factor between input data (low-resolution) and output data (high-resolution).
 
 --dim_channels
+
 Number of input/output channels.
 
 --tau
+
 Rainfall threshold used to define rain / no-rain.
 
 
