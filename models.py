@@ -118,7 +118,7 @@ def gaussian_kernel(sigma: float):
 
 
 class RMResNet(nn.Module):
-    def __init__(self,rcan: nn.Module,resnet: nn.Module,tau: float = 0.03,k: float = 4.0,feather_sigma: float = 0.2): 
+    def __init__(self,rcan: nn.Module,resnet: nn.Module,tau: float = 0.1,k: float = 4.0,feather_sigma: float = 0.2): 
         super().__init__()
         self.rcan = rcan
         self.resnet = resnet

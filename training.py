@@ -101,19 +101,18 @@ def calculate_scores(args):
     l1_crit = nn.L1Loss()
     
     pred = torch.load('./data/prediction/'+args.dataset+'_'+args.model_id+ '_' + args.test_val_train+'.pt')
-    pred = pred.detach().cpu().numpy()
+    pred = pred.detach().cpu()
     j = 0    
     for i, (lr, hr) in enumerate(val_data):
-        pr = torch.tensor(pred[i, j, ...])              
-        pr = pred[i, 0, ...]   # (H,W)
-        gt = hr[0, ...]        # (H,W)   
+        pr = pred[i, 0, ...]   
+        gt = hr[0, ...]       
         mse += l2_crit(pr, gt).item()
         mae += l1_crit(pr, gt).item()
         mean_bias += torch.mean(gt - pr)
         mean_abs_bias += torch.abs(torch.mean(gt - pr))
         corr += pearsonr(pr.flatten(), gt.flatten())
-        pr_4d = pr.unsqueeze(0).unsqueeze(0)            # (1,1,H,W)
-        gt_4d = gt.unsqueeze(0).unsqueeze(0)            # (1,1,H,W)
+        pr_4d = pr.unsqueeze(0).unsqueeze(0)           
+        gt_4d = gt.unsqueeze(0).unsqueeze(0)           
         ms_ssim += multiscale_structural_similarity_index_measure(
             pr_4d, gt_4d,
             data_range=max_val - min_val,
